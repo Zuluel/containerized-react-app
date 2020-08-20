@@ -13,9 +13,33 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     git clone https://github.com/Zuluel/containerized-react-app.git
     
 ##### Development Environment:
+    
+> Install dependencies and run the container using dockerfile, run the command:
 
-> Install Dependencies and Run the Container
+    1. docker build -f Dockerfile.dev -t sample:dev
+    2. docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true sample:dev
+
+> OR, install dependencies and run the Container using docker-compose, run the command:
  
-    in the command line run the command "docker-compose up"
+    1. docker-compose up
+    
+    
+> note: you may replace sample:dev to any naming convention you may like.
+    
+> Open your browser and go to [localhost:3000](http://localhost:3000)
 
-> Open you browser and go to [localhost:3000](http://localhost:3000)
+##### Production Environment:
+
+> Using Dockerfile to build and spin up the production server
+
+    1. docker build -f Dockerfile -t sample:prod .
+    2. docker run -it --rm -p 1337:80 sample:prod
+    
+> Using Docker-compose to build and spin up the production server
+
+    1. docker-compose -f docker-compose.prod.yml up -d --build
+
+
+> note: you may replace sample:prod to any naming convention you may like.
+    
+> Open your browser and go to [localhost:1337](http://localhost:1337)
